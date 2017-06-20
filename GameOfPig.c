@@ -18,7 +18,6 @@ int main()
     int p1Score = 0;/*This will store the dice values until player hangs up*/
     int p2Score = 0;
 
-
     int p1Total = 0; /*This will add the values of player one and two to their final score*/
     int p2Total = 0;
 
@@ -27,7 +26,6 @@ int main()
 
     int winScore = 0; /*This is the predecided final score needed to win the game */
     
-
     winScore = get_Target();
     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
 
@@ -36,20 +34,19 @@ int main()
 
 void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, int p2Score)
 {
-    printf("Stats: ");
-    printf("Player 1: %d | Player 2: %d\n", p1Total, p2Total);
+    printf("\n(Player Total) Player 1: %d | Player 2: %d\n", p1Total, p2Total);
     printf("Player %d's turn\n", *turn);
     int diceNum = 0;
     if(p1Total == winScore)
     {
-        printf("player 1 won\n");
+        printf("\n** PLAYER 1 WON **\n");
         free(turn);
         exit(1);
     }
 
     if(p2Total == winScore)
     {
-        printf("player 2 won\n");
+        printf("\n** PLAYER 2 WON **\n");
         free(turn);
         exit(1);
     }
@@ -69,14 +66,31 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
             case 6:
                 if(*turn == 1)
                 {
-                    p1Total = p1Total + diceNum;
+                    p1Score = p1Score + diceNum;
+                    printf("player 1 score: %d\n", p1Score);
+
+                    if(p1Score >= winScore)
+                    {
+                        printf("\n** PLAYER 1 WON **\n");
+                        free(turn);
+                        exit(1);
+                    }
 
                     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
                 }
 
                 else
                 {
-                    p2Total = p2Total + diceNum;
+                    p2Score = p2Score + diceNum;
+                    printf("player 2 score: %d\n", p2Score);
+
+                    if(p2Score >= winScore)
+                    {
+                        printf("\n** PLAYER 2 WON **\n");
+                        free(turn);
+                        exit(1);
+                    }
+
                     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
                 }     
             break;
@@ -84,13 +98,13 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
             case 1:
                 if(*turn == 1)
                 {
-                    p1Total = 0;
+                    p1Score = 0;
                     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
                 }
 
                 else
                 {
-                    p2Total = 0;
+                    p2Score = 0;
                     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
                 }
                     
@@ -102,10 +116,12 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
         {
             if(*turn == 1)
             {
+                p1Total = p1Total + p1Score;
                 *turn = 2;
             }
             else
             {
+                p2Total = p2Total + p2Score;
                 *turn = 1;
             }
             
@@ -121,7 +137,7 @@ int moveOrHold(int * turn)
     bool found_alpha = false;
 
     do{
-        printf("Would you like to (1)play or (2)hold?\n"); 
+        printf("Pick a move:\n(1)play\n(2)hold\n"); 
         fgets(userInput, 100, stdin);
 
         for(int i = 0; i < strlen(userInput); i++)
@@ -160,6 +176,7 @@ int get_Target()
         
         printf("Set the target score: ");
         fgets(win, 100, stdin);
+        printf("\n\n");
 
         for(int i = 0; i < strlen(win); i++)
         {
@@ -191,9 +208,7 @@ int diceRoll()
     srand(time(NULL));
     int dice_num = rand() % 6 + 1;
     displayDice(dice_num);
-
     return dice_num;
-
 }
 
 
