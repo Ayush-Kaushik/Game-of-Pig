@@ -1,5 +1,4 @@
 # Game-Of-Pig
-Test Version (June 18, 2017)
 
 **RULES<br>**
 Step 1: 
