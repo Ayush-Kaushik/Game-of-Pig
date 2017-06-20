@@ -37,14 +37,14 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
     printf("\n(Player Total) Player 1: %d | Player 2: %d\n", p1Total, p2Total);
     printf("Player %d's turn\n", *turn);
     int diceNum = 0;
-    if(p1Total == winScore)
+    if(p1Total >= winScore)
     {
         printf("\n** PLAYER 1 WON **\n");
         free(turn);
         exit(1);
     }
 
-    if(p2Total == winScore)
+    if(p2Total >= winScore)
     {
         printf("\n** PLAYER 2 WON **\n");
         free(turn);
