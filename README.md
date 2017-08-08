@@ -27,4 +27,8 @@ gcc -Wall -std=c99 GameOfPig.c -o run
 ```
 
 This will create an executable: run
-To start the game, type in: ./run
+To start the game, type in: 
+
+```
+./run
+```
