@@ -22,7 +22,9 @@ Reach target points first and win the game.
 
 To compile this game enter the game directory and type in the following command:
 
+```
 gcc -Wall -std=c99 GameOfPig.c -o run
+```
 
 This will create an executable: run
 To start the game, type in: ./run
