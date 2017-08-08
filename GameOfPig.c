@@ -13,7 +13,7 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
 int moveOrHold(int * turn);
 void displayDice(int number);
 
-int main()
+int main(int argc, char *argv[])
 { 
     /*This will store the dice values until player hangs up*/
     int p1Score = 0;
@@ -29,7 +29,6 @@ int main()
 
     /*This is the predecided final score needed to win the game */
     int winScore = 0; 
-    
 
     winScore = get_Target();
     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
