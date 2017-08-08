@@ -18,3 +18,11 @@ Knowing when to stop rolling and end your turn is the key to winning at Pig. It'
 
 Step 5: 
 Reach target points first and win the game. 
+
+
+To compile this game enter the game directory and type in the following command:
+
+gcc -Wall -std=c99 GameOfPig.c -o run
+
+This will create an executable: run
+To start the game, type in: ./run
