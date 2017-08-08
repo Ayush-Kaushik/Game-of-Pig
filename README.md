@@ -13,7 +13,7 @@ Enter points on the score sheet if the number rolled is two, three, four, five, 
 Step 4: 
 Continue rolling the die until you're happy with the number of points you've scored. Then, "hold" by handing the die over to your opponent, and track all points earned during your turn. 
 
-Tip
+**Tip**<br>
 Knowing when to stop rolling and end your turn is the key to winning at Pig. It's an exercise in deciding between gut instinct and greed. 
 
 Step 5: 
