@@ -13,19 +13,23 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
 int moveOrHold(int * turn);
 void displayDice(int number);
 
-int main()
+int main(int argc, char *argv[])
 { 
-    int p1Score = 0;/*This will store the dice values until player hangs up*/
+    /*This will store the dice values until player hangs up*/
+    int p1Score = 0;
     int p2Score = 0;
 
-    int p1Total = 0; /*This will add the values of player one and two to their final score*/
+    /*This will add the values of player one and two to their final score*/
+    int p1Total = 0; 
     int p2Total = 0;
 
-    int * turn = malloc(sizeof(int) * 1); //1 is player 1's turn, 2 is player 2's turn
+    /*1 is player 1's turn, 2 is player 2's turn*/
+    int * turn = malloc(sizeof(int) * 1); 
     *turn = 1;
 
-    int winScore = 0; /*This is the predecided final score needed to win the game */
-    
+    /*This is the predecided final score needed to win the game */
+    int winScore = 0; 
+
     winScore = get_Target();
     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
 
@@ -37,22 +41,16 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
     printf("\n(Player Total) Player 1: %d | Player 2: %d\n", p1Total, p2Total);
     printf("Player %d's turn\n", *turn);
     int diceNum = 0;
-    if(p1Total >= winScore)
+    if(p1Total >= winScore || p2Total >= winScore)
     {
-        printf("\n** PLAYER 1 WON **\n");
-        free(turn);
-        exit(1);
-    }
-
-    if(p2Total >= winScore)
-    {
-        printf("\n** PLAYER 2 WON **\n");
+        printf("\n** PLAYER %d WON **\n", *turn);
         free(turn);
         exit(1);
     }
 
 
-    int move = moveOrHold(turn);
+    int move = 0;
+    move = moveOrHold(turn);
         
     if(move == 1)
     {
@@ -99,12 +97,14 @@ void gameLoop(int * turn, int winScore, int p1Total, int p2Total, int p1Score, i
                 if(*turn == 1)
                 {
                     p1Score = 0;
+                    *turn = 2; //hand the dice to other player
                     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
                 }
 
                 else
                 {
                     p2Score = 0;
+                    *turn = 1;
                     gameLoop(turn, winScore, p1Total, p2Total, p1Score, p2Score);
                 }
                     
